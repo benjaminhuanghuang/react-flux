@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//
+import Task from './task'
 
 export default class Tasks extends React.Component{
     render(){
-        return <span>Hello</span>;
+        return <Task>helllolllll</Task>;
     }
 }
