@@ -4,8 +4,12 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 const mongoUrl = "mongodb://admin:admin123@ds119618.mlab.com:19618/db_todo";
-mongoose.connect(mongoUrl, (err)=>{
-    err && console.err(err);
+// useMongoClient told mongoose to use new connect logic
+// `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set 
+//   the `useMongoClient` option if using `connect()` or `createConnection()`.
+mongoose.connect(mongoUrl, { useMongoClient: true });
+mongoose.connection.on('error', (err) => {
+  console.error(`${err.message}`);
 });
 
 app.set('view engine', 'ejs');
