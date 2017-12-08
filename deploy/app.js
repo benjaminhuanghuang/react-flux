@@ -18288,6 +18288,8 @@ var _task2 = _interopRequireDefault(_task);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -18299,19 +18301,60 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Tasks = function (_React$Component) {
     _inherits(Tasks, _React$Component);
 
-    function Tasks() {
+    function Tasks(props) {
         _classCallCheck(this, Tasks);
 
-        return _possibleConstructorReturn(this, (Tasks.__proto__ || Object.getPrototypeOf(Tasks)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Tasks.__proto__ || Object.getPrototypeOf(Tasks)).call(this, props));
+
+        _this.state = {
+            tasks: [{ _id: 0, label: 'task1' }, { _id: 1, label: 'task2' }, { _id: 2, label: 'task3' }, { _id: 3, label: 'task4' }]
+        };
+        return _this;
     }
 
     _createClass(Tasks, [{
         key: 'render',
         value: function render() {
+            var tasks = this.state.tasks;
+
+            var chl = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var _ref2 = _step.value;
+
+                    var _id = _ref2._id,
+                        label = _ref2.label,
+                        rest = _objectWithoutProperties(_ref2, ['_id', 'label']);
+
+                    chl.push(_react2.default.createElement(
+                        _task2.default,
+                        { key: _id },
+                        'label'
+                    ));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
             return _react2.default.createElement(
-                _task2.default,
+                'div',
                 null,
-                'helllolllll'
+                chl
             );
         }
     }]);
