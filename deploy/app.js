@@ -18290,6 +18290,12 @@ var _button = __webpack_require__(29);
 
 var _button2 = _interopRequireDefault(_button);
 
+var _tasks = __webpack_require__(30);
+
+var _tasks2 = _interopRequireDefault(_tasks);
+
+var _tasks3 = __webpack_require__(32);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -18311,14 +18317,21 @@ var Tasks = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Tasks.__proto__ || Object.getPrototypeOf(Tasks)).call(this, props));
 
         _this.state = {
-            tasks: [{ _id: 0, label: 'task1' }, { _id: 1, label: 'task2' }, { _id: 2, label: 'task3' }, { _id: 3, label: 'task4' }]
+            tasks: _tasks2.default.getTasks()
         };
+
+        _this.addTask = _this.addTask.bind(_this);
         return _this;
     }
 
     _createClass(Tasks, [{
+        key: 'addTask',
+        value: function addTask(e) {}
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var tasks = this.state.tasks;
 
             var chl = [];
@@ -18359,10 +18372,12 @@ var Tasks = function (_React$Component) {
                 'div',
                 null,
                 chl,
-                _react2.default.createElement('input', { name: 'add', type: 'text' }),
+                _react2.default.createElement('input', { name: 'add', type: 'text', ref: function ref(a) {
+                        _this2.input = a;
+                    } }),
                 _react2.default.createElement(
                     _button2.default,
-                    { className: 'btn btn-secondary' },
+                    { className: '-secondary', onClick: this.addTask },
                     'Add Task'
                 )
             );
@@ -18465,14 +18480,12 @@ var Button = function (_React$Component) {
     }
 
     _createClass(Button, [{
-        key: "render",
+        key: 'render',
         value: function render() {
-            var className = this.props.className;
-
-
+            var className = ('btn ' + this.props.className).split(" -").join(' btn-');
             return _react2.default.createElement(
-                "button",
-                { type: "button", className: "btn btn -primary btn-lg btn-block" },
+                'button',
+                { type: 'button', className: className },
                 this.props.children
             );
         }
@@ -18482,6 +18495,105 @@ var Button = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Button;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _event = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"event\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _event2 = _interopRequireDefault(_event);
+
+var _dispatcher = __webpack_require__(31);
+
+var _dispatcher2 = _interopRequireDefault(_dispatcher);
+
+var _types = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var ACT = _interopRequireWildcard(_types);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TaskStore = function (_EventEmitter) {
+    _inherits(TaskStore, _EventEmitter);
+
+    function TaskStore() {
+        _classCallCheck(this, TaskStore);
+
+        var _this = _possibleConstructorReturn(this, (TaskStore.__proto__ || Object.getPrototypeOf(TaskStore)).call(this));
+
+        _this.action = _this.action.bind(_this);
+        return _this;
+    }
+
+    _createClass(TaskStore, [{
+        key: 'addTask',
+        value: function addTask(payload) {}
+    }, {
+        key: 'action',
+        value: function action(_ref) {
+            var type = _ref.type,
+                payload = _ref.payload;
+
+            switch (type) {
+                case ACT.ADD_TASK:
+                    this.addTask(payload);
+                    break;
+            }
+        }
+    }]);
+
+    return TaskStore;
+}(_event2.default);
+
+var store = new TasksStore();
+_dispatcher2.default.register(store.action);
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addTasks = addTasks;
+
+var _dispatcher = __webpack_require__(31);
+
+var _dispatcher2 = _interopRequireDefault(_dispatcher);
+
+var _types = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var ACT = _interopRequireWildcard(_types);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function addTasks() {}
 
 /***/ })
 /******/ ]);
