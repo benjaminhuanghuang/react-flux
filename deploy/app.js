@@ -18533,7 +18533,7 @@ var _dispatcher = __webpack_require__(31);
 
 var _dispatcher2 = _interopRequireDefault(_dispatcher);
 
-var _types = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _types = __webpack_require__(39);
 
 var ACT = _interopRequireWildcard(_types);
 
@@ -18635,7 +18635,7 @@ var _dispatcher = __webpack_require__(31);
 
 var _dispatcher2 = _interopRequireDefault(_dispatcher);
 
-var _types = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _types = __webpack_require__(39);
 
 var ACT = _interopRequireWildcard(_types);
 
@@ -19511,6 +19511,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	}
 })();
 
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ADD_TASK = exports.ADD_TASK = 'addTask';
+var ALL_TASKS = exports.ALL_TASKS = 'allTasks';
 
 /***/ })
 /******/ ]);
